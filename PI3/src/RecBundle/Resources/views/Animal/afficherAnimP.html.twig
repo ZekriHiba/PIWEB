@@ -1,0 +1,98 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block content %}
+    <script>
+        function myFunction1() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <div class="container">
+
+        <hr class="invis">
+
+        <hr class="invis">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="content-widget">
+                    <div class="widget-title">
+                      <strong> <h2>Vos Animaux perdu</h2></strong>
+                        <hr>
+                    </div>
+                    <input onkeyup="myFunction1()" class="form-control" name="s" id="myInput" type="search" placeholder=" Search... ">
+                    <table id="myTable" class="table table-bordered">
+                        <thead>
+                        <tr>
+
+                            <th>
+                                Surnom
+                            </th>
+                            <th>
+                                Sexe
+                            </th>
+                            <th>
+                               Couleur
+                            </th>
+                            <th>
+                                Poids(kg)
+                            </th>
+                            <th>
+                               Description
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% for m in animaux %}
+                            <td>
+                                {{ m.nickName }}
+                            </td>
+                            <td>
+                                {{ m.gender}}
+                            </td>
+                            <td>
+                                {{ m.color }}
+                            </td>
+                            <td>
+                                {{ m.weight }}
+                            </td>
+                            <td>
+                                {{ m.description}}
+                            </td>
+                           <td>
+                               <img src="{{ m.image}}" class="img-responsive">
+                           </td>
+                            <td> <strong><a href="{{ path('delete',{'id':m.idAnimal}) }}"> Supprimer </a> </strong> </td>
+                            <td> <strong><a href="{{ path('update',{'id':m.idAnimal}) }}"> Modifier </a> </strong> </td>
+
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <hr class="invis">
+    </div>
+
+
+{% endblock %}

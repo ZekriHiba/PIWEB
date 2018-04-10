@@ -1,0 +1,126 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block content  %}
+
+<section class="section banner" style="background-image:url({{ asset('Client/upload/xblog_01.jpg.pagespeed.ic.If1K3SXod7.jpg') }})" data-img-width="1688" data-img-height="470" data-diff="100">
+</section>
+<div class="page-title grey">
+    <div class="container">
+        <div class="title-area pull-left">
+            <h2>Contact Us <small>Get a premium support now!</small></h2>
+            <div class="bread">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Contact</li>
+                </ol>
+            </div>
+        </div>
+        <div class="search pull-right">
+            <form>
+                <div class="input-group">
+                    <input class="form-control" name="s" type="search" placeholder=" Search... ">
+                    <span class="input-group-btn">
+<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<section class="section white">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-widget">
+                    <div class="widget-title">
+                        <h4>Mes Rendez-vous</h4>
+                        <hr>
+                    </div>
+                    <table id="mytable" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>
+                                Heure
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Notre Vétérinaire
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in apts %}
+                            <tr>
+                        <td>{{ a.time }} </td>
+                        <td>{{ a.date|date("m/d/Y") }} </td>
+                                <td> <strong><a href="{{ path('searsh', {'id':a.vetid}) }}"> OU? Et Chez Qui!? </a> </strong> </td>
+                                <td><button type="button" class="btn btn-block btn-danger deleteBtn" id="{{ a.id }}" >Annuler</button></td>
+                        {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+    <script>
+        $(".deleteBtn").click(function(){
+            if(confirm('Etes-vous sur de la supression')){
+                var  itemId = $(this).attr('id');
+                var el = this;
+                $.ajax({
+                    url:'{{ path('supp')}}',
+                    type: 'post',
+                    data: {'input':itemId},
+                    success: function() {
+                        $(el).closest('tr').fadeOut(190, function(){
+                            $(this).remove();
+                        });
+                    }
+                });
+            }
+
+        });
+    </script>
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

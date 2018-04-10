@@ -1,0 +1,107 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block titre %}ShopBundle:Product:ShowProduct{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="page-title grey">
+        <div class="container">
+            <div class="title-area pull-left">
+                <h2>Shop <small>Best pet supplies, materials and eats</small></h2>
+                <div class="bread">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Shop</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="search pull-right">
+                <form>
+                    <div class="input-group">
+                        <input class="form-control" id="search" name="s" type="search" placeholder=" Search... ">
+                        <span class="input-group-btn">
+<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <section class="section white">
+        <div class="container">
+            <div class="shop-top clearfix">
+                <div class="title-area pull-left">
+                    <p>Showing 1–9 of 23 results</p>
+                </div>
+
+                <div class="pull-right">
+
+                    <select  data-style="btn-primary" onchange="location = this.value;">
+                        <option> sorting  </option>
+                        <option value="{{ path('_show_product') }}">Default sorting</option>
+                        <option value="{{ path('_show_product_rating') }}">Sort by average rating</option>
+                        <option value="{{ path('_show_product_priceA') }}">Sort by price: low to high </option>
+                        <option value="{{ path('_show_product_priceD') }}">Sort by price: high to low </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row module-wrapper shop-layout text-center">
+                <ul class="navList" style="list-style:none;">
+
+                {% for p in products %}
+                    <li style="" ><div class="" style="display:none;">{{ p.name }}</div>
+
+                <div class=" col-xs-4 wdtShop grid cs-style-3">
+
+                    <div class="img-wrap">
+                        <figure>
+                            <img alt="" src="{{ asset('Client/upload/'~p.image ) }}" class="img-responsive">
+                            <figcaption>
+                                <p><strong>${{ p.price }}</strong></p>
+                                <a class="blogging" title="Add to Cart" href="{{ path('_show_single_product',{'id':p.idProduct}) }}"><i class="fa fa-shopping-cart"></i></a>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <h4><a href="shop-single.html" title="">{{ p.name }}</a></h4>
+
+
+                    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+                    {{ p.rating|rating }}
+
+                </div>
+                    </li>
+
+                {% endfor %}
+                </ul>
+
+            </div>
+            <hr class="invis">
+            <nav class="pagi clearfix text-center">
+                <ul class="pagination">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $('#search').keyup(function(){
+            var valThis = $(this).val();
+            $('.navList>li').each(function(){
+                var text = $(this).text().toLowerCase();
+                (text.indexOf(valThis) == 0) ? $(this).show() : $(this).hide();
+            });
+        });
+    </script>
+
+{% endblock %}

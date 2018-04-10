@@ -1,0 +1,37 @@
+{% extends "::layoutHome.html.twig" %}
+{% block content %}
+
+    <div class="appoform-wrapper">
+        <div id="message"></div>
+        <hr class="invis">
+
+        <form role="form" method="post" action="{{ path('contact') }}">
+            <header class="form-header">
+                <h3>Reclamation technique </h3>
+            </header>
+            <div class="post-body-form text-center">
+               <strong> <p>Pour un meilleur service , <br>
+                    Zanimo vous donne la possibilité de reclamer sur les problemes techniques de notre site<br>
+                       Veuillez remplir ce formulaire : </p></strong>
+            </div>
+            <fieldset class="row-fluid appoform">
+                <div class="col-md-8">
+                    <label class="sr-only"></label>
+                    <input type="text" name="sujet" id="name" class="form-control" placeholder="Sujet *">
+                </div>
+
+                <div class="col-md-8">
+                    <label class="form-control">Message *</label>
+                </div>
+                <div class="col-md-8">
+                    <textarea class="form-control" name="contenu" id="comments" rows="6" placeholder=" Message .."> </textarea>
+                </div>
+                <div class="col-md-8">
+                    <button type="submit" name="ajouter" id="submit" class="btn btn-primary btn-block">Envoyer message</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+{% endblock %}

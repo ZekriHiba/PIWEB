@@ -1,0 +1,164 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block content  %}
+
+    <section class="section banner" style="background-image:url({{ asset('Client/upload/xblog_01.jpg.pagespeed.ic.If1K3SXod7.jpg') }})" data-img-width="1688" data-img-height="470" data-diff="100">
+    </section>
+    <div class="page-title grey">
+        <div class="container">
+            <div class="title-area pull-left">
+                <h2>Contact Us <small>Get a premium support now!</small></h2>
+                <div class="bread">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Contact</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="search pull-right">
+                <form>
+                    <div class="input-group">
+                        <input class="form-control" name="s" type="search" placeholder=" Search... ">
+                        <span class="input-group-btn">
+<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <section class="section white">
+
+        <div class="container">
+
+            <div class="appoform-wrapper" >
+                <div id="message"></div>
+                <form id="form1" action="{{ path('ajoutp') }}" name="contactform" method="post">
+                    <header class="form-header">
+                        <h3>Prenez un Rendez-vous</h3>
+                    </header>
+                    <div class="post-body-form text-center">
+                        <p>Afin de vous Bien Sevir, Zanimo Rendez-vous Service <br>
+                            On travaille avec un systéme de rendez-vous. Merci de completer ce formulaire.</p>
+                        <br>
+                        <br>
+
+                       <strong><p>Choisir Votre Date</p></strong>
+                    </div>
+                    <fieldset class="row-fluid appoform">
+                        <div class="col-md-12">
+
+                            <input id="date"  class="form-control" type="date"  name="somedate">
+                        </div>
+                        <div class="col-md-12">
+                            <select  id="temp" name="time">
+                                <option value="12">-- choisir un temp --</option>
+                                <option >09:30</option>
+                                <option >10:00</option>
+                                <option >11:00</option>
+                                <option >11:30</option>
+                                <option >14:30</option>
+                                <option >15:00</option>
+                                <option >15:30</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 40px;margin-bottom: 50px" >
+                            <select id="vets" name="vet">
+                                <option value="12">-- choisir un vétérinaire --</option>
+                                {% for v in vetos2 %}
+
+                                    <option value="{{ v.id }}"  >{{ v.nomp }}</option>
+
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <button name="add" type="submit" value="SEND" id="submit" class="btn btn-primary btn-block">Enregistrez votre rendez-vous</button>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+   <script>
+       var today = new Date().toISOString().split('T')[0];
+       document.getElementsByName("somedate")[0].setAttribute('min', today);
+   </script>
+
+    <script src="{{ asset('jquery-3.2.1.min.js') }}"></script>    <script>
+        $(document).ready(function () {
+            $('#date').change(function() {
+                var i = $("#date").val();
+                var v = $("#vets").val();
+                $('select option').prop('disabled', false);
+
+                $.ajax({
+                    url:'{{ path('ajoutp')}}',
+                    type: 'post',
+                    data: {'input':i,'input1':v},
+                    success: function(data) {
+                        $.each(data, function (i, el) {
+                            $("select option:contains("+el.time+")").attr("disabled","disabled")
+                            $("select option:contains("+el.time+")").attr("style","color: #cdcdcd;")
+
+                        })
+                    }
+                });
+            });
+
+            $('#vets').change(function() {
+                var i = $("#date").val();
+                var v = $("#vets").val();
+                $('select option').prop('disabled', false);
+
+                $.ajax({
+                    url:'{{ path('ajoutp')}}',
+                    type: 'post',
+                    data: {'input':i,'input1':v},
+                    success: function(data) {
+                        $.each(data, function (i, el) {
+                            $("select option:contains("+el.time+")").attr("disabled","disabled")
+                            $("select option:contains("+el.time+")").attr("style","color: #cdcdcd;")
+
+                        })
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+rec_homepage:
+    path:     /
+    defaults: { _controller: RecBundle:Default:index }
+afficher:
+    path:     /afficher
+    defaults: { _controller: RecBundle:Animal:afficher }
+detail:
+    path:     /detail/{id}
+    defaults: { _controller: RecBundle:Animal:detail }
+contact:
+    path:     /contact
+    defaults: { _controller: RecBundle:Animal:contact }
+ajout:
+    path:     /ajout
+    defaults: { _controller: RecBundle:Animal:ajout }
+afficherper:
+    path:     /afficherper
+    defaults: { _controller: RecBundle:Animal:afficherAnimP }
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: RecBundle:Animal:delete }
+update:
+    path:     /mod/{id}
+    defaults: { _controller: RecBundle:Animal:update }
+admin:
+    path:     /ad
+    defaults: { _controller: RecBundle:Animal:admin }
+msgd:
+    path:     /msg/{id}
+    defaults: { _controller: RecBundle:Animal:msg }
+msgdel:
+    path:     /msgdel/{id}
+    defaults: { _controller: RecBundle:Animal:msgdel }
+gererA:
+    path:     /gerer
+    defaults: { _controller: RecBundle:Animal:gerer }
+admindel:
+    path:     /admindel/{id}
+    defaults: { _controller: RecBundle:Animal:admindel }

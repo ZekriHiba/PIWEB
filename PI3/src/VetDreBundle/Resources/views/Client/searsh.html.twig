@@ -1,0 +1,229 @@
+{% extends "::layoutHome.html.twig" %}
+
+
+
+{% block content %}
+
+
+<section class="section white">
+
+    <div class="container">
+        <div class="row">
+        <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="{{ veto.image }}" alt="User profile picture">
+
+                    <h3 class="profile-username text-center">{{ veto.nomp }}</h3>
+
+                    <p class="text-muted text-center">Vétérinaire</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Nombre de vues</b> <a class="pull-right">{{ veto.vue }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>nombre de rendez-vous</b> <a class="pull-right">543</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+            <!-- About Me Box -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <br>
+                    <br>
+                    <h3 class="box-title">A propos de lui</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <strong><i class="fa fa-book margin-r-5"></i> Description</strong>
+
+                    <p class="text-muted">
+{{ veto.description }}                    </p>
+
+                    <br>
+
+                    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+                    <p class="text-muted">{{ veto.ville }}, {{ veto.gouv }}</p>
+
+
+                    <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+                    <p>
+
+                        <span class="label label-info">{{ veto.prix }}  TND</span>
+
+                    </p>
+
+                    <br>
+
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+                    <p>Merci d'introduire des informations correctes lors de l'envoi du mail</p>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Profil</a></li>
+                    <li><a href="#settings" data-toggle="tab">Contacter</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="activity">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <strong><h3 class="box-title">{{ veto.nomp }}</h3></strong>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <form role="form" method="post" action="{{ path('details_annonce',{'id':veto.id}) }}">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <input value="{{ veto.id }}" name="idVet" type="hidden" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <strong><label>Telephone</label></strong><br>
+                                        <label>{{ veto.phone }}</label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <strong><label>Email</label></strong><br>
+                                        <label>{{ veto.mail }}</label>
+                                    </div>
+
+
+
+                                    <div class="box box-success">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Localiser notre Vétérinaire</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            <div id="map-canvas" style="width: 500px; height: 400px"></div>
+                                        </div>
+
+
+                                        <!-- /.box-body -->
+                                    </div>
+                                </div>
+
+
+
+                                <!-- /.box-body -->
+
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+
+
+
+                    <div class="tab-pane" id="settings">
+                        <form class="form-horizontal" action="{{ path('contact') }}" method="post">
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Nom</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="nom" id="inputName" placeholder="Name" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="mail" value="{{ veto.mail }}" id="inputEmail" placeholder="Email" type="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Telephone</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="tel" id="inputName" placeholder="Votre num de Tel" type="number" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputExperience" class="col-sm-2 control-label">Contenu</label>
+
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="body" id="inputExperience" placeholder="Contenu du mail"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-danger" name="send">Envoyer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+    </div>
+    </div>
+</section>
+    <!-- /.row -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rVwsq1P717oxLzmdCVYy7WH8g0Us3Sc"
+            type="text/javascript"></script>
+    <script>
+        var myCenter =new google.maps.LatLng({{ veto.lat }}, {{ veto.longit }});
+        var marker;
+        function initialize() {
+            var mapProp= {
+                center: myCenter,
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            /*  var mapOptions = {
+             center: {lat: -34.397, lng: 150.644},
+             zoom: 8
+             };*/
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapProp);
+
+            /* var myLating = new google.maps.LatLng(-25.363882, 131.044922);
+             var mapOptions = {
+             zoom: 4,
+             center: myLating
+             }
+             var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+             */
+            google.maps.event.addListener(map, 'click', function(event) {
+                placeMarker(event.latLng);
+            });
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                animation: google.maps.Animation.BOUNCE
+            });
+            marker.setMap(map);
+
+
+            google.maps.event.addListener(map, 'click', function( event ){
+                document.getElementById("longit").value = event.latLng.lng();
+                document.getElementById("latit").value = event.latLng.lat();
+            });
+        }
+        google.maps.event.addDomListner(window,'load',initialize());
+
+    </script>
+
+
+{% endblock %}

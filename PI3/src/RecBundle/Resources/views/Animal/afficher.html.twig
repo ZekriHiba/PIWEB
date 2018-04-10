@@ -1,0 +1,26 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block content %}
+
+<div class="row module-wrapper shop-layout text-center">
+    <h1><b> Avez-vous deja vu un animal qui figure dans cette liste ?? Si oui, n'hesitez pas à contacter son propriaitere .. </b></h1>
+ {% for m in animaux %}
+         <div class="col-md-4  wdtShop grid cs-style-3">
+             <div class="img-wrap">
+                 <figure>
+                     <img src="{{ m.image}}" class="img-responsive">
+                     <figcaption>
+                         <p><strong>{{ m.gender}}</strong></p>
+                         <a class="blogging" title="Details" href="{{ path('detail',{'id':m.idAnimal}) }}"><i class="fa fa-plus"></i></a>
+                     </figcaption>
+                 </figure>
+             </div>
+             <h4><a href="shop-single.html" title="">{{ m.nickName }}</a></h4>
+
+         </div>
+
+ {% endfor %}
+</div>
+
+{% endblock %}
+

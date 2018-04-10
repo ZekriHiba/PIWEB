@@ -1,0 +1,118 @@
+
+<img src="{{ asset('Client/images/user3.png') }}" alt="Ova" style="height: 35px" id="image">
+<div  class="" >
+
+    <ul >
+        <li style="color: black;" id="l1" hidden>
+            <a href="{{ path('fos_user_profile_show') }}" style="color: black;font-size: large"  id="a1" hidden>Mes Informations</a>
+        </li>
+        <li style="color: black;" id="l2" hidden>
+            <a href="{{ path('fos_user_profile_edit') }}" style="color: black;font-size: large" id="a2" hidden>Editer mes Informations</a>
+        </li>
+        <li style="color: black;" id="l3" hidden>
+            <a href="" style="color: black;font-size: large" id="a3" hidden>Mes Factures</a>
+        </li>
+        <li style="color: black;" id="l4" hidden>
+            <a href="" style="color: black;font-size: large" id="a4" hidden>Mes Adresses</a>
+        </li>
+        <li style="color: black;" id="l5" hidden>
+            <a href="{{ path('fos_user_security_logout') }}" style="color: black;font-size: large" id="a5" hidden>deconnexion</a>
+        </li>
+        {%  if  app.user.roles[0]=='ROLE_SUPER_ADMIN' %}
+
+            <li style="color: black;" id="l6" hidden>
+                <a href="{{ path('_show_stock') }}" style="color: black;font-size: large" id="a6" hidden>Dash</a></li>
+        {%  else %}
+
+
+        {% endif %}
+    </ul>
+
+
+</div>
+
+<script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+<script>
+    $('#image').click(
+        function () {
+            $('#l1').toggle();
+            $('#l2').toggle();
+            $('#l3').toggle();
+            $('#l4').toggle();
+            $('#l5').toggle();
+            $('#l6').toggle();
+            $('#a1').toggle();
+            $('#a2').toggle();
+            $('#a3').toggle();
+            $('#a4').toggle();
+            $('#a5').toggle();
+            $('#a6').toggle();
+
+        }
+    );
+    $('#a1').mouseenter(
+        function () {
+            $('#a1').css('color','blue');
+            $('#l1').css('color','blue');
+        }
+    );
+    $('#a1').mouseleave(
+        function () {
+            $('#a1').css('color','black');
+            $('#l1').css('color','black');
+        }
+    );
+
+    $('#a2').mouseenter(
+        function () {
+            $('#a2').css('color','blue');
+            $('#l2').css('color','blue');
+        }
+    );
+    $('#a2').mouseleave(
+        function () {
+            $('#a2').css('color','black');
+            $('#l2').css('color','black');
+        }
+    );
+
+    $('#a3').mouseenter(
+        function () {
+            $('#a3').css('color','blue');
+            $('#l3').css('color','blue');
+        }
+    );
+    $('#a3').mouseleave(
+        function () {
+            $('#a3').css('color','black');
+            $('#l3').css('color','black');
+        }
+    );
+
+    $('#a4').mouseenter(
+        function () {
+            $('#a4').css('color','blue');
+            $('#l4').css('color','blue');
+        }
+    );
+    $('#a4').mouseleave(
+        function () {
+            $('#a4').css('color','black');
+            $('#l4').css('color','black');
+        }
+    );
+
+    $('#a5').mouseenter(
+        function () {
+            $('#a5').css('color','blue');
+            $('#l5').css('color','blue');
+        }
+    );
+    $('#a5').mouseleave(
+        function () {
+            $('#a5').css('color','black');
+            $('#l5').css('color','black');
+        }
+    );
+
+</script>

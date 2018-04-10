@@ -1,0 +1,50 @@
+{% extends "::LayoutVetDre.html.twig" %}
+
+
+
+    {% block contenu %}
+
+
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Quick Example</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" method="post" action="{{ path('ajouter_annonce') }}">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Titre</label>
+                        <input name="titre" class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">description</label>
+                        <input name="contenu" class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input id="exampleInputFile" type="file">
+
+                        <p class="help-block">Example block-level help text here.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input multiple="multiple" name="image1[]" id="pro_image" type="file" size="45" />
+
+                        <p class="help-block">Example block-level help text here.</p>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Check me out
+                        </label>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary" name="ajouter">Submit</button>
+                </div>
+            </form>
+        </div>
+    {% endblock  %}
+

@@ -1,0 +1,53 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block content %}
+<div class="appoform-wrapper">
+    <hr class="invis">
+
+    <form role="form" method="post" action="{{ path('ajout') }}">
+
+        <header class="form-header">
+            <h3> Ajouter animal perdu </h3>
+        </header>
+
+        <div class="post-body-form text-center">
+            <strong> <p> Veuillez remplir ce formulaire</p></strong>
+        </div>
+        <fieldset class="row-fluid appoform">
+            <div class="col-md-8">
+                <label class="sr-only">Image *</label>
+                <input name="image" id="datepicker" type="file" placeholder="" class="form-control hasDatepicker">
+            </div>
+            <div class="col-md-8">
+                <label class="sr-only">Poids(kg) *</label>
+                <input name="poids" id="datepicker" type="text" placeholder="Poids" class="form-control hasDatepicker" required>
+            </div>
+            <div class="col-md-8">
+                <label class="sr-only">Surnom *</label>
+                <input name="surnom" type="text" placeholder="Surnom" class="form-control" required>
+            </div>
+            <div class="col-md-8">
+                <label class="sr-only">Couleur *</label>
+                <input name="couleur" type="text" placeholder="Couleur" class="form-control hasDatepicker" required>
+            </div>
+            <div class="col-md-8">
+                <label class="">Sexe *</label><br>
+                <select name="sexe" class="selectpicker bs-select-hidden" data-style="btn-white" required>
+                    <option value="Male">Male</option>
+                    <option value="Femelle">Femelle</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+
+                <textarea name="description" type="text" placeholder="Description .." class="form-control"></textarea>
+            </div>
+
+            <div class="col-md-8">
+                <button type="submit" name="ajout" class="btn btn-primary btn-block btn-lg">Valider</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+{% endblock %}
+

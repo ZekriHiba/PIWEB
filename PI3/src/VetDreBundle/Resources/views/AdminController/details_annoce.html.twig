@@ -1,0 +1,307 @@
+{% extends "::LayoutAdmin.html.twig" %}
+
+
+
+{% block contenu %}
+
+
+
+    <div class="row">
+        <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="{{ veto.image }}" alt="User profile picture">
+
+                    <h3 class="profile-username text-center">{{ veto.nomp }}</h3>
+
+                    <p class="text-muted text-center">Vétérinaire</p>
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Nombre de vues</b> <a class="pull-right">{{ veto.vue }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>nombre de rendez-vous</b> <a class="pull-right">543</a>
+                        </li>
+
+                    </ul>
+
+                    <a href="#" class="btn btn-warning btn-block"><b>Supprimer</b></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+            <!-- About Me Box -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">About Me</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <strong><i class="fa fa-book margin-r-5"></i> Description</strong>
+
+                    <p class="text-muted">
+                        {{ veto.description }}
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+                    <p class="text-muted">{{ veto.gouv }}, {{ veto.ville }}</p>
+
+                    <hr>
+
+                    <strong><i class="fa fa-pencil margin-r-5"></i>Prix de Consultation</strong>
+
+                    <p>
+                        <span class="label label-danger">{{ veto.prix }} TND</span>
+
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+                    <p>Contacter le Véterinaire afin de se renseigner en cas de modification</p>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Modifier</a></li>
+                    <li><a href="#settings" data-toggle="tab">Contacter</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="activity">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Modification du profil</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <form role="form" method="post" action="{{ path('details_annonce',{'id':veto.id}) }}">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <input value="{{ veto.id }}" name="idVet" type="hidden" required>
+                                            <label>Nom et Prénom</label>
+                                            <input value="{{ veto.nomp }}" name="nomp" class="form-control" placeholder="Entre le nom et le prénom  " type="text" required>
+                                        </div>
+                                    <div class="form-group">
+                                        <label>Telephone</label>
+                                        <input class="form-control" type="number" placeholder="xx xxx xxx" value="{{ veto.phone }}" name="tel" required></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea  class="form-control" rows="3" placeholder="Entrer une description" required>{{ veto.description }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input value="{{ veto.mail }}" name="titre" class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email" required>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>prix consultation</label>
+                                        <input  value="{{ veto.prix }}" name="prix" class="form-control" placeholder="Ent" type="number" required>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-xs-6">
+                                            <div class="form-group" >
+                                                <label>Gouvernorat</label>
+                                                <select  class="form-control" id="s1" name="gouvernorat" required>
+                                                    <option selected="selected" >{{ veto.gouv }}</option>
+                                                    <option>Ariana</option>
+                                                    <option>Beja</option>
+                                                    <option>Ben Arous</option>
+                                                    <option>Nabeul</option>
+                                                    <option>Bizerte</option>
+                                                    <option>Kaiouran</option>
+                                                    <option>Gafsa</option>
+                                                    <option>Jendouba</option>
+                                                    <option>Kef</option>
+                                                    <option>Gabes</option>
+                                                    <option>Gafsa</option>
+                                                    <option>Mahdia</option>
+                                                    <option>Manouba</option>
+                                                    <option>Mednine</option>
+                                                    <option>Monastir</option>
+                                                    <option>Seliana</option>
+                                                    <option>Sfax</option>
+                                                    <option>Sidi BouZid</option>
+                                                    <option>Sousse</option>
+                                                    <option>Tataouine</option>
+                                                    <option>Tunis</option>
+                                                    <option>Tozeur</option>
+                                                    <option>Zaghouan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-xs-6">
+                                            <div class="form-group">
+                                                <label>Ville</label>
+                                                <select class="form-control" id="s2" name="ville">
+                                                    <option selected="selected">{{ veto.ville }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box box-success">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Localiser notre Vétérinaire</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            <div id="map-canvas" style="width: 500px; height: 400px"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> longitude :</label>
+                                            <input value="{{ veto.longit }}" id="longit" class="form-control" placeholder="Enter ..."  type="text" name="longit">
+                                        </div>
+                                        <div class="form-group">
+                                            <label> latitude :</label>
+                                            <input value="{{ veto.lat }}" id="latit" class="form-control" placeholder="Enter ..."  type="text" name="latit">
+                                        </div>
+
+
+
+                                        <!-- /.box-body -->
+                                    </div>
+                                </div>
+
+
+
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary" name="modifier">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+
+
+
+                    <div class="tab-pane" id="settings">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="inputName" placeholder="Name" type="email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="inputEmail" placeholder="Email" type="email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="inputName" placeholder="Name" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="inputSkills" placeholder="Skills" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rVwsq1P717oxLzmdCVYy7WH8g0Us3Sc"
+            type="text/javascript"></script>
+    <script>
+        var myCenter =new google.maps.LatLng({{ veto.lat }}, {{ veto.longit }});
+        var marker;
+        function initialize() {
+            var mapProp= {
+                center: myCenter,
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            /*  var mapOptions = {
+             center: {lat: -34.397, lng: 150.644},
+             zoom: 8
+             };*/
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapProp);
+
+            /* var myLating = new google.maps.LatLng(-25.363882, 131.044922);
+             var mapOptions = {
+             zoom: 4,
+             center: myLating
+             }
+             var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+             */
+            google.maps.event.addListener(map, 'click', function(event) {
+                placeMarker(event.latLng);
+            });
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                animation: google.maps.Animation.BOUNCE
+            });
+            marker.setMap(map);
+
+            function placeMarker(location) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+            google.maps.event.addListener(map, 'click', function( event ){
+                document.getElementById("longit").value = event.latLng.lng();
+                document.getElementById("latit").value = event.latLng.lat();
+            });
+        }
+        google.maps.event.addDomListner(window,'load',initialize());
+
+    </script>
+
+
+{% endblock %}

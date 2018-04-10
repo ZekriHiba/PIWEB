@@ -1,0 +1,293 @@
+{% extends "::LayoutAdmin.html.twig" %}
+
+
+
+{% block contenu %}
+
+<div class="row">
+    <div class="col-xs-12">
+
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Listes de nos Vétérinaires</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div id="example1_filter" class="dataTables_filter"><label>Rechercher:     <input class="form-control input-sm" id="myInput" style="margin-left: auto ; margin-right: auto"  placeholder="Recherecher par nom " aria-controls="example1" type="search" onkeyup="myFunction1()"></label></div></div></div>
+                    <div class="row"><div class="col-sm-12">
+                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                <tr role="row"><th style="width: 40px"></th><th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nom et Prenom</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 120px;" aria-label="Browser: activate to sort column ascending">Gouvernorat</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 120.733px;" aria-label="Platform(s): activate to sort column ascending">Ville</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100.9px;" aria-label="Engine version: activate to sort column ascending">Vues</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending"></th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending"></th></tr>
+                                </thead>
+                                <tbody id="myTable">
+                                {% for v in vetos %}
+
+                                <tr role="row" class="odd" >
+                                    <td class="sorting_1"><div class="user-panel">
+                                            <div class="pull-left image">
+                                                <img src="{{ v.image }}" class="img-circle" alt="User Image">
+                                            </div>
+                                        </div></td>
+                                    <td>{{ v.nomp }}</td>
+                                    <td>{{ v.gouv }}</td>
+                                    <td>{{ v.ville }}</td>
+                                    <td>{{ v.vue }}</td>
+                                    <td><a href="{{ path('details_annonce',{'id':v.id}) }}"><button type="button" class="btn btn-block btn-primary">Details & gestion</button></a></td>
+
+                                    <td><button type="button" class="btn btn-block btn-danger deleteBtn" id="{{ v.id }}" >Supprimer</button></td>
+                                </tr>
+                                {% endfor %}
+
+                               </tbody>
+                                <tfoot>
+                                <tr><th rowspan="1" colspan="1">Image profil</th><th rowspan="1" colspan="1">nom et prenom</th><th rowspan="1" colspan="1">Gouvernorat</th><th rowspan="1" colspan="1">Ville</th><th rowspan="1" colspan="1">Vues</th></tr>
+                                </tfoot>
+                            </table></div></div>
+                    <div class="row">
+
+                        <div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Précédent</a></li><li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Suivant</a></li></ul></div></div></div></div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Formulaire Ajout d'un Vétérinaire </h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" method="post" action="{{ path('add_annonce') }}">
+            <div class="box-body">
+                <div class="form-group">
+                    <label>Nom et Prénom</label>
+                    <input name="nomp" class="form-control" placeholder="Entrer le nom et le prénom" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Telephone</label>
+                    <input class="form-control" type="number" placeholder="xx xxx xxx" name="tel"></input>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Entrer une description" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input name="mail" class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email">
+                </div>
+                <div class="form-group">
+                    <label>prix consultation</label>
+                    <input  name="prix" class="form-control" placeholder="xx Dinars" type="number" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputFile">Image de Profil</label>
+                    <input id="exampleInputFile" type="file" name="image">
+
+                    <p class="help-block">Choisir une image de profil.</p>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="form-group" >
+                            <label>Gouvernorat</label>
+                            <select class="form-control" id="s1" name="gouvernorat">
+                                <option selected="selected" ></option>
+                                <option>Ariana</option>
+                                <option>Beja</option>
+                                <option>Ben Arous</option>
+                                <option>Nabeul</option>
+                                <option>Bizerte</option>
+                                <option>Kaiouran</option>
+                                <option>Gafsa</option>
+                                <option>Jendouba</option>
+                                <option>Kef</option>
+                                <option>Gabes</option>
+                                <option>Gafsa</option>
+                                <option>Mahdia</option>
+                                <option>Manouba</option>
+                                <option>Mednine</option>
+                                <option>Monastir</option>
+                                <option>Seliana</option>
+                                <option>Sfax</option>
+                                <option>Sidi BouZid</option>
+                                <option>Sousse</option>
+                                <option>Tataouine</option>
+                                <option>Tunis</option>
+                                <option>Tozeur</option>
+                                <option>Zaghouan</option>
+                            </select>
+                        </div>
+                    </div>
+                        <div class="col-lg-3 col-xs-6">
+                    <div class="form-group">
+                        <label>Ville</label>
+                        <select class="form-control" id="s2" name="ville">
+
+                        </select>
+                    </div>
+                        </div>
+                </div>
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Localiser notre Vétérinaire</h3>
+                    </div>
+                    <div class="box-body">
+                        <div id="map-canvas" style="width: 500px; height: 400px"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> longitude :</label>
+                        <input id="longit" class="form-control" placeholder="Enter ..."  type="text" name="longit">
+                    </div>
+                    <div class="form-group">
+                        <label> latitude :</label>
+                        <input id="latit" class="form-control" placeholder="Enter ..."  type="text" name="latit">
+                    </div>
+
+
+
+                    <!-- /.box-body -->
+                </div>
+            </div>
+
+
+
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="ajouter">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+
+
+    <script>
+        var date = new Date();
+        date.setDate(date.getDate()-1);
+
+
+
+        $(document).ready(function(){
+            $('#dateapt').datepicker({
+                autoclose : true,
+                daysOfWeekDisabled:  [0,6],
+                todayHighlight:true,
+                startDate: date
+            });
+        });
+
+
+        $(".deleteBtn").click(function(){
+            if(confirm('Etes-vous sur de la supression')){
+                var  itemId = $(this).attr('id');
+                var el = this;
+                $.ajax({
+                    url:'{{ path('delete_annoce')}}',
+                    type: 'post',
+                    data: {'input':itemId},
+                    success: function() {
+                        $(el).closest('tr').fadeOut(190, function(){
+                            $(this).remove();
+                        });
+                    }
+                });
+            }
+
+        });
+        var s1=$("#s1");
+        var s2=$("#s2");
+        s1.change(function(){
+            if(s1.val() == "Tunis")
+            {
+                s2.empty();
+                s2.append("<option>Bab Bhar</option><option>Bab Asal</option>");
+            }else if (s1.val() == "Ariana")
+            {
+                s2.empty();
+                s2.append("<option>Ariana Ville</option><option>ElGhazella</option>");
+            }else
+            {
+                s2.empty();
+            }
+
+        });
+
+        function myFunction1() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rVwsq1P717oxLzmdCVYy7WH8g0Us3Sc"
+            type="text/javascript"></script>
+    <script>
+        var myCenter =new google.maps.LatLng(35.496106, 9.43);
+        var marker;
+        function initialize() {
+            var mapProp= {
+                center: myCenter,
+                zoom: 7,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            /*  var mapOptions = {
+             center: {lat: -34.397, lng: 150.644},
+             zoom: 8
+             };*/
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapProp);
+
+            /* var myLating = new google.maps.LatLng(-25.363882, 131.044922);
+             var mapOptions = {
+             zoom: 4,
+             center: myLating
+             }
+             var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+             */
+            google.maps.event.addListener(map, 'click', function(event) {
+                placeMarker(event.latLng);
+            });
+
+            function placeMarker(location) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+            google.maps.event.addListener(map, 'click', function( event ){
+                document.getElementById("longit").value = event.latLng.lng();
+                document.getElementById("latit").value = event.latLng.lat();
+            });
+        }
+        google.maps.event.addDomListner(window,'load',initialize());
+
+    </script>
+
+{% endblock %}

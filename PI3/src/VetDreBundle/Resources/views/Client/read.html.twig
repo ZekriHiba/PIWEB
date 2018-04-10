@@ -1,0 +1,207 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block content  %}
+
+<section class="section banner" style="background-image:url({{ asset('Client/upload/xblog_01.jpg.pagespeed.ic.If1K3SXod7.jpg') }})" data-img-width="1688" data-img-height="470" data-diff="100">
+</section>
+
+<section class="section white">
+    <div class="container">
+
+        <div class="search pull-right">
+            <form>
+                <div class="input-group">
+                    <input onkeyup="myFunction1()" class="form-control" name="s" id="myInput" type="search" placeholder=" Rechercher... ">
+                    <span class="input-group-btn">
+<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-widget">
+                    <div class="widget-title">
+                        <h4>Liste Vétérinaire</h4>
+                        <hr>
+                    </div>
+                    <div class="col-md-5">
+                        <select id='mySelector'   name="price" onchange="myFunction2()">
+                            <option value="10000">-- choisir un prix --</option>
+                            <option value="30" >Moins de 50 TND </option>
+                            <option value="50" >Moins de 70 TND</option>
+                            <option value="100" >Moins de 100 TND</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <select id='mySelector1'    onchange="myFunction2()">
+                            <option value="default">-- choisir Gouvernorat --</option>
+                            <option>Ariana</option>
+                            <option>Beja</option>
+                            <option>Ben Arous</option>
+                            <option>Nabeul</option>
+                            <option>Bizerte</option>
+                            <option>Kaiouran</option>
+                            <option>Gafsa</option>
+                            <option>Jendouba</option>
+                            <option>Kef</option>
+                            <option>Gabes</option>
+                            <option>Gafsa</option>
+                            <option>Mahdia</option>
+                            <option>Manouba</option>
+                            <option>Mednine</option>
+                            <option>Monastir</option>
+                            <option>Seliana</option>
+                            <option>Sfax</option>
+                            <option>Sidi BouZid</option>
+                            <option>Sousse</option>
+                            <option>Tataouine</option>
+                            <option>Tunis</option>
+                            <option>Tozeur</option>
+                            <option>Zaghouan</option>
+
+                        </select>
+                    </div>
+
+                    </br>
+                    </br>
+
+
+                    <table style="margin-top: 50px" id="myTable" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width: 70px"></th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nom et Prenom</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="Browser: activate to sort column ascending">Gouvernorat</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="Platform(s): activate to sort column ascending">Ville</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="Engine version: activate to sort column ascending">Prix de consultation TND</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="Engine version: activate to sort column ascending"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for v in vetos %}
+
+                            <tr role="row" class="odd" >
+                                <td class="sorting_1"><div class="user-panel">
+                                        <div class="pull-left image">
+                                            <img src="{{ v.image }}" class="img-responsive img-circle" alt="User Image">
+                                        </div>
+                                    </div></td>
+                                <td>{{ v.nomp }} </td>
+                                <td>{{ v.gouv }} </td>
+                                <td>{{ v.ville }} </td>
+                                <td>{{ v.prix }} </td>
+                                <td><a href="{{ path('searsh', {'id':v.id}) }}"><button>Plus de Détails</button></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+    <script>
+        function myFunction1() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function myFunction2() {
+            var input, filter, table, tr, td, i,select;
+           select=  document.getElementById("mySelector").value;
+
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4];
+
+                if (td) {
+                    if (td.innerHTML < parseInt(select)  ) {
+                        tr[i].style.display = "";
+
+                    } else if (td.innerHTML > parseInt(select) ) {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function myFunction3() {
+            var input, filter, table, tr, td, i,select;
+            select=  document.getElementById("mySelector").value;
+
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    if (td.innerHTML < parseInt(select) ) {
+                        alert(td.innerHTML);
+                        tr[i].style.display = "";
+
+                    } else if (td.innerHTML > parseInt(select) ) {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+    <script>
+
+
+    </script>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

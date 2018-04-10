@@ -1,0 +1,19 @@
+
+
+<div class="" >
+    <a href="{{ path('fos_user_security_login') }}" style="color: black;font-size: large;text-decoration: underline" id="a1">se connecter</a>
+</div>
+
+<script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+<script>
+    $('#a1').mouseenter(
+        function () {
+            $('#a1').css('color','blue');
+        }
+    );
+    $('#a1').mouseleave(
+        function () {
+            $('#a1').css('color','black');
+        }
+    );
+</script>

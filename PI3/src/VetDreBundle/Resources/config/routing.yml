@@ -1,0 +1,92 @@
+vet_dre_homepage:
+    path:     /
+    defaults: { _controller: VetDreBundle:Default:index }
+
+ajouter_annonce:
+    path:     /ajouterAnnonce
+    defaults: { _controller: VetDreBundle:Vet:ajouterAnnonce }
+
+
+add_annonce:
+    path:     /addAnnonce
+    defaults: { _controller: VetDreBundle:AdminController:addAnnonce }
+
+delete_annoce:
+    path:     /deleteAnnoce
+    defaults: { _controller: VetDreBundle:AdminController:deleteAnnoce }
+
+show_annonce:
+    path:     /showAnnonce
+    defaults: { _controller: VetDreBundle:AdminController:showAnnonce }
+
+details_annonce:
+    path:     /detailsAnnonce/{id}
+    defaults: { _controller: VetDreBundle:AdminController:detailsAnnonce }
+
+read:
+    path:     /read
+    defaults: { _controller: VetDreBundle:Client:read }
+
+searsh:
+    path:     /searsh/{id}
+    defaults: { _controller: VetDreBundle:Client:searsh }
+
+filter:
+    path:     /filter
+    defaults: { _controller: VetDreBundle:Client:filter }
+
+contact:
+    path:     /contact
+    defaults: { _controller: VetDreBundle:Client:contact }
+
+create_a_p:
+    path:     /createAP
+    defaults: { _controller: VetDreBundle:Appointment:createAP }
+
+read_a_p:
+    path:     /readAP
+    defaults: { _controller: VetDreBundle:Appointment:readAP }
+
+update_a_p:
+    path:     /updateAP
+    defaults: { _controller: VetDreBundle:Appointment:updateAP }
+
+delete_a_p:
+    path:     /deleteAP
+    defaults: { _controller: VetDreBundle:Appointment:deleteAP }
+
+search_a_p:
+    path:     /SearchAP
+    defaults: { _controller: VetDreBundle:Appointment:SearchAP }
+
+ajoutp:
+    path:     /ajoutp
+    defaults: { _controller: VetDreBundle:ap:ajoutp }
+
+supp:
+    path:     /supp
+    defaults: { _controller: VetDreBundle:ap:supp }
+
+modifp:
+    path:     /modifp
+    defaults: { _controller: VetDreBundle:ap:modifp }
+
+rechp:
+    path:     /rechp
+    defaults: { _controller: VetDreBundle:ap:rechp }
+
+lirep:
+    path:     /lirep
+    defaults: { _controller: VetDreBundle:ap:lirep }
+
+envoi:
+    path:     /envoi
+    defaults: { _controller: VetDreBundle:Mail:envoi }
+
+succes:
+    path:     /succes
+    defaults: { _controller: VetDreBundle:Mail:succes }
+
+rescue:
+    path:     /rescue
+    defaults: { _controller: VetDreBundle:Mail:rescue }

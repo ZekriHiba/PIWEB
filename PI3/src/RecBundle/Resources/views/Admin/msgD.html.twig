@@ -1,0 +1,17 @@
+{% extends "::LayoutAdmin.html.twig" %}
+
+{% block contenu %}
+
+
+
+     <h3> Sujet : </h3>
+     <p>{{ msg.sujet }} </p>
+     <h3> Date : </h3>
+     <p> {{ msg.date|date('Y-m-d') }}</p>
+     <h3> Contenu du message : </h3>
+     <p> {{ msg.contenu}}</p>
+
+
+
+
+{% endblock %}

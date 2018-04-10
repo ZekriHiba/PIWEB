@@ -1,0 +1,43 @@
+{% extends "::layoutHome.html.twig" %}
+
+{% block content %}
+    <section class="section white">
+        <div class="container">
+            <div class="row">
+                <div id="content" class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                            <div class="product-images">
+                                <a data-rel="prettyPhoto" href="upload/shop_02.jpg" title="">
+                                    <img class="img-polaroid" src="{{ animaux.image }}" alt="">
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-5">
+                            <div class="shop-desc">
+                                <h1><span><strong>Surnom :</strong></span> <p>   {{ animaux.nickName }} </p></h1>
+
+                                <div class="shopmeta">
+
+                                    <h1><span><strong>Sexe :</strong></span> <p>  {{ animaux.gender}} </p></h1>
+
+                                    <h1><span><strong>Poids (kg) :</strong></span> <p> {{ animaux.weight}} </p></h1>
+
+                                    <h1><span><strong>Description :</strong></span> <p> {{ animaux.description }}</p></h1>
+                                    <h1><span><strong> Contact du  propriétaire :      </strong>    <p> {{ a }}</p> </span>
+                                   </h1>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
